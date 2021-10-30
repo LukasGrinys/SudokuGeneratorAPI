@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;700;900&display=swap" rel="stylesheet">
+    <title>Sudoku API | by Lukas Grinys</title>    
+    <link href="css/index.css" rel="stylesheet"/>
+    <script src="js/script.js" defer></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" rel="stylesheet"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/js/all.min.js"></script>
+</head>
+<body>
+    <header>
+        <h1 class="header-title">Sudoku API</h1>
+        <h2 class="header-subtitle">by Lukas Grinys</h2>
+        <p class="header-text">REST API to help making Sudoku puzzles</p>
+    </header>
+    <main>
+
+        <section class="key-details">
+            <ul>
+                <li><i class="fa-solid fa-code"></i>Easy to use!</li>
+                <li><i class="fa-solid fa-puzzle-piece"></i>Generates puzzle of desired difficulty</li>
+                <li><i class="fa-solid fa-list-ol"></i>Can leave desired number of clues</li>
+            </ul>
+        </section>
+
+        <section>
+            <article>
+                <h2 class="section-title">
+                    <i class="fa-solid fa-circle-question"></i>How to use it?
+                </h2>
+                <p>By a <code>GET</code> request call to <code>/api</code></p>
+                <p>
+                    Returns a multidimensional array, where in <code>grid[a][b]</code>
+                    "a" indicates index of row, "b" indicates the index of column
+                </p>
+                <pre>
+    <code>
+    const response = await fetch('/api').then( res => res.json() );
+    console.log(response);
+
+    // {"puzzle":[
+    //    [0,0,0,2,0,0,0,1,0],
+    //    [0,0,0,5,0,0,0,0,0],
+    //    [0,0,0,0,8,0,0,0,3],
+    //    [0,0,0,0,0,0,1,0,5],
+    //    [0,0,9,0,0,0,8,0,2],
+    //    [0,0,0,8,0,0,0,0,0],
+    //    [9,0,0,0,2,0,6,5,0],
+    //    [0,0,0,0,5,0,0,0,0],
+    //    [6,0,1,9,0,4,0,0,8]
+    // ]}
+    </code>
+                </pre>
+                <div class="sudokuContainer">
+                    <h3>Try it!</h3>
+                    <div id="grid1" class="grid">
+                        Click "Generate" to generate a sudoku grid!
+                    </div>
+                    <button id="simpleSudokuGeneratorButton">Generate</button>
+                </div>
+            </article>
+
+            <article>
+                <h2 class="section-title">
+                    <i class="fa-solid fa-circle-question"></i>How to get puzzle by difficulty?
+                </h2>
+                <p>By a <code>GET</code> request call to <code>/api?difficulty={type}</code></p>
+                <p>Available types (in lowercase):
+                    <ul>
+                        <li><code>easy</code> - (36+ clues)</li>
+                        <li><code>medium</code> - (27-36 clues)</li>
+                        <li><code>hard</code> - (19-26 clues)</li>
+                        <li><code>evil</code> - (16-18 clues)</li>
+                    </ul>
+                </p>
+                <pre>
+    <code>
+    const response = await fetch('/api?difficulty=easy').then(res => res.json());
+    console.log(response);
+    
+    // {"puzzle":[
+    //    [0,0,0,0,0,7,1,4,0],
+    //    [6,3,7,0,0,2,0,0,8],
+    //    [1,0,0,0,0,8,0,0,0],
+    //    [5,0,0,8,7,3,0,0,0],
+    //    [8,0,0,4,0,1,0,9,6],
+    //    [4,0,0,0,0,0,8,0,3],
+    //    [3,8,9,0,6,0,2,1,0],
+    //    [7,6,5,2,1,0,0,0,0],
+    //    [2,1,4,0,8,0,0,0,0]
+    // ]}
+    </code>
+                </pre>
+                <div class="sudokuContainer">
+                    <h3>Try it!</h3>
+                    <div id="grid2" class="grid">
+                        Choose difficulty and click "Generate" to generate a sudoku grid!
+                    </div>
+                    <div class="actions">
+                        <select id="difficulty">
+                            <option value="easy" selected>Easy</option>
+                            <option value="medium">Medium</option>
+                            <option value="hard">Hard</option>
+                            <option value="evil">Evil</option>
+                        </select>
+                        <button id="sudokuGeneratorByDifficultyButton">Generate</button>
+                    </div>
+                </div>
+            </article>
+
+            <article>
+                <h2 class="section-title">
+                    <i class="fa-solid fa-circle-question"></i>How to get puzzle with exact number of clues?
+                </h2>
+                <p>By a <code>GET</code> request call to <code>/api?clues={numberOfClues}</code></p>
+                <p>Replace <code>{numberOfClues}</code> with a number between 1 and 81</p>
+                <pre>
+    <code>
+    const response = await fetch('/api?clues=36').then(res => res.json());
+    console.log(response);
+
+    // {"puzzle":[
+    //    [6,5,7,1,0,2,0,9,3],
+    //    [0,0,2,0,0,0,6,5,7],
+    //    [4,0,0,0,0,0,0,0,2],
+    //    [5,6,0,7,2,0,9,3,0],
+    //    [0,2,0,9,3,4,5,0,0],
+    //    [9,0,4,0,6,0,0,0,8],
+    //    [8,7,0,2,0,0,3,0,0],
+    //    [0,0,0,3,4,0,0,0,0],
+    //    [0,0,0,8,0,0,2,0,0]
+    // ]}
+    </code>
+                </pre>
+                <div class="sudokuContainer">
+                    <h3>Try it!</h3>
+                    <div id="grid3" class="grid">
+                        Enter number of clues and click "Generate" to generate a sudoku grid!
+                    </div>
+                    <div class="actions">
+                        <input type="number" id="clues" min="1" max="81" value="36"/>
+                        <button id="sudokuGeneratorByCluesButton">Generate</button>
+                    </div>
+                </div>
+            </article>
+        </section>
+    </main>
+</body>
+</html>
