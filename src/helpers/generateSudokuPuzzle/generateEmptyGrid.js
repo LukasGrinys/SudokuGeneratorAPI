@@ -12,6 +12,6 @@ const generateEmptyGrid = () => {
     }
 
     return grid;
-}
+};
 
 module.exports = generateEmptyGrid;

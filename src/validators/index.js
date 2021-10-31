@@ -1,5 +1,5 @@
-const sudokuGeneratorValidator = require('./sudokuGenerator.validator');
+const sudokuGeneratorValidator = require("./sudokuGenerator.validator");
 
 module.exports = {
-    sudokuGeneratorValidator
-}
+    sudokuGeneratorValidator,
+};

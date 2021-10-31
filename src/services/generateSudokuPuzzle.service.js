@@ -1,10 +1,11 @@
-const { generateEmptyGrid, leaveCluesByDifficulty, leaveCluesByCount } = require('../helpers/generateSudokuPuzzle');
-const solveSudokuPuzzle = require('./solveSudokuPuzzle.service');
+const {
+    generateEmptyGrid,
+    leaveCluesByDifficulty,
+    leaveCluesByCount,
+} = require("../helpers/generateSudokuPuzzle");
+const solveSudokuPuzzle = require("./solveSudokuPuzzle.service");
 
-const generateSudokuPuzzle = ({
-    difficulty,
-    clues
-}) => {
+const generateSudokuPuzzle = ({ difficulty, clues }) => {
     // Generate empty grid
     const emptyGrid = generateEmptyGrid();
     // ...and solve it
@@ -28,6 +29,6 @@ const generateSudokuPuzzle = ({
     }
 
     return finalGrid;
-}
+};
 
 module.exports = generateSudokuPuzzle;

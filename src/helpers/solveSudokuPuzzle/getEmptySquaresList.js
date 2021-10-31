@@ -15,6 +15,6 @@ const getEmptySquaresList = (grid) => {
     }
 
     return squaresToFill;
-}
+};
 
 module.exports = getEmptySquaresList;

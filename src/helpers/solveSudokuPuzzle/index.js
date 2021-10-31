@@ -1,9 +1,9 @@
-const generateNumbersToCheck = require('./generateNumbersToCheck');
-const getEmptySquaresList = require('./getEmptySquaresList');
-const getBacktraceMap = require('./getBacktraceMap');
-const clearDigit = require('./clearDigit');
-const insertDigit = require('./insertDigit');
-const canNumberBeInserted = require('./canNumberBeInserted');
+const generateNumbersToCheck = require("./generateNumbersToCheck");
+const getEmptySquaresList = require("./getEmptySquaresList");
+const getBacktraceMap = require("./getBacktraceMap");
+const clearDigit = require("./clearDigit");
+const insertDigit = require("./insertDigit");
+const canNumberBeInserted = require("./canNumberBeInserted");
 
 module.exports = {
     generateNumbersToCheck,
@@ -11,5 +11,5 @@ module.exports = {
     getBacktraceMap,
     clearDigit,
     insertDigit,
-    canNumberBeInserted
-}
+    canNumberBeInserted,
+};

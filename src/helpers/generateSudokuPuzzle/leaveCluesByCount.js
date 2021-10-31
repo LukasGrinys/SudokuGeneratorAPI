@@ -1,13 +1,13 @@
-const { clearDigit } = require('../solveSudokuPuzzle');
+const { clearDigit } = require("../solveSudokuPuzzle");
 
 const getCounterSquare = (square) => {
-    const [row, col] = square.split(',');
+    const [row, col] = square.split(",");
 
     const counterRow = 8 - Number(row);
     const counterCol = 8 - Number(col);
 
     return `${counterRow},${counterCol}`;
-}
+};
 
 const shiftGrid = (grid) => {
     const xThirds = Math.floor(Math.random() * 3);
@@ -21,7 +21,7 @@ const shiftGrid = (grid) => {
     for (let i = 0; i < yThirds * 3; i++) {
         const lastRow = grid.pop();
         grid.unshift(lastRow);
-    };
+    }
 
     // Shift columns
     for (let i = 0; i < 9; i++) {
@@ -30,11 +30,11 @@ const shiftGrid = (grid) => {
             grid[i].unshift(lastRowNumber);
         }
     }
-}
+};
 
 const leaveCluesByDifficulty = (grid, cluesCount) => {
     if (cluesCount > 81) {
-        throw new Error("Invalid clues count")
+        throw new Error("Invalid clues count");
     }
 
     const squaresToClearCount = 81 - cluesCount;
@@ -47,8 +47,11 @@ const leaveCluesByDifficulty = (grid, cluesCount) => {
     }
 
     const squaresToClear = [];
-    for (let i = 0; i < squaresToClearCount;) {
-        const [randomSquare] = allSquareIndexes.splice(Math.floor(Math.random() * allSquareIndexes.length), 1);
+    for (let i = 0; i < squaresToClearCount; ) {
+        const [randomSquare] = allSquareIndexes.splice(
+            Math.floor(Math.random() * allSquareIndexes.length),
+            1
+        );
         squaresToClear.push(randomSquare);
         i++;
 
@@ -56,7 +59,7 @@ const leaveCluesByDifficulty = (grid, cluesCount) => {
             break;
         }
 
-        if (randomSquare === '4,4') {
+        if (randomSquare === "4,4") {
             continue;
         }
 
@@ -71,13 +74,13 @@ const leaveCluesByDifficulty = (grid, cluesCount) => {
     }
 
     for (let i = 0; i < squaresToClear.length; i++) {
-        const [x,y] = squaresToClear[i].split(',');
+        const [x, y] = squaresToClear[i].split(",");
         clearDigit(grid, x, y);
     }
 
     shiftGrid(grid);
 
     return grid;
-}
+};
 
 module.exports = leaveCluesByDifficulty;

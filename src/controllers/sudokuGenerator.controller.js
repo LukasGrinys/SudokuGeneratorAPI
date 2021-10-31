@@ -1,5 +1,5 @@
-const generateSudokuPuzzle = require('../services/generateSudokuPuzzle.service');
-const { sudokuGeneratorValidator } = require('../validators');
+const generateSudokuPuzzle = require("../services/generateSudokuPuzzle.service");
+const { sudokuGeneratorValidator } = require("../validators");
 
 const sudokuGeneratorController = (req, res) => {
     const params = req.query;
@@ -9,8 +9,8 @@ const sudokuGeneratorController = (req, res) => {
     if (!cluesValidation.isValid) {
         return res.status(400).send({
             error: true,
-            message: cluesValidation.message
-        })
+            message: cluesValidation.message,
+        });
     }
 
     const difficulty = params.difficulty || null;
@@ -18,25 +18,25 @@ const sudokuGeneratorController = (req, res) => {
     if (!difficultyValidation.isValid) {
         return res.status(400).json({
             error: true,
-            message: difficultyValidation.message
-        })
+            message: difficultyValidation.message,
+        });
     }
 
     try {
         const puzzle = generateSudokuPuzzle({
             difficulty,
-            clues
+            clues,
         });
 
         res.status(200).json({
-            puzzle
+            puzzle,
         });
     } catch (e) {
         res.status(500).json({
             error: true,
-            message: e.message
-        })
+            message: e.message,
+        });
     }
-}
+};
 
 module.exports = sudokuGeneratorController;

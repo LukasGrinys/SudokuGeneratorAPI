@@ -1,18 +1,17 @@
-const { 
-    generateNumbersToCheck, 
-    getEmptySquaresList, 
-    getBacktraceMap, 
-    insertDigit, 
-    canNumberBeInserted, 
-    clearDigit
-} = require('../helpers/solveSudokuPuzzle');
+const {
+    generateNumbersToCheck,
+    getEmptySquaresList,
+    getBacktraceMap,
+    insertDigit,
+    canNumberBeInserted,
+    clearDigit,
+} = require("../helpers/solveSudokuPuzzle");
 
 const solveSudokuPuzzle = (grid) => {
     const emptySquares = getEmptySquaresList(grid);
     const backtraceMap = getBacktraceMap(emptySquares);
     const pathLength = emptySquares.length;
 
-    pointerLoop:
     for (let pointer = 0; pointer < pathLength; ) {
         // If pointer eventually gets to -1 - puzzle is invalid
         if (pointer < 0) {
@@ -29,18 +28,21 @@ const solveSudokuPuzzle = (grid) => {
             pointer--;
 
             // Clear the previously inserted digit
-            const [prevX, prevY] = emptySquares[pointer].split(',');
+            const [prevX, prevY] = emptySquares[pointer].split(",");
             clearDigit(grid, prevX, prevY);
             continue;
         }
 
         // Get coordinates of current square
-        const [x, y] = currentSquare.split(',');
+        const [x, y] = currentSquare.split(",");
         // Get numbers for solver to check in random order
         const numbersToCheck = generateNumbersToCheck();
 
-        singleSquareCheck:
-        for (let numberToGuessIndex = 0; numberToGuessIndex < 9; numberToGuessIndex++) {
+        singleSquareCheck: for (
+            let numberToGuessIndex = 0;
+            numberToGuessIndex < 9;
+            numberToGuessIndex++
+        ) {
             const currentNumberToCheck = numbersToCheck[numberToGuessIndex];
 
             // Check if it has not been guessed before
@@ -62,6 +64,6 @@ const solveSudokuPuzzle = (grid) => {
     }
 
     return grid;
-}
+};
 
-module.exports = solveSudokuPuzzle
+module.exports = solveSudokuPuzzle;

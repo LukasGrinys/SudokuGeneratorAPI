@@ -7,6 +7,6 @@ const getBacktraceMap = (emptySquaresList) => {
     }
 
     return backtraceMap;
-}
+};
 
 module.exports = getBacktraceMap;

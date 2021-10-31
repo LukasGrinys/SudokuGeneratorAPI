@@ -1,28 +1,28 @@
 // Elements
-const simpleSudokuGrid = document.getElementById('grid1');
-const sudokuByDifficultyGrid = document.getElementById('grid2');
-const sudokuByCluesCountGrid = document.getElementById('grid3');
+const simpleSudokuGrid = document.getElementById("grid1");
+const sudokuByDifficultyGrid = document.getElementById("grid2");
+const sudokuByCluesCountGrid = document.getElementById("grid3");
 
 const loadingText = "Generating...";
 const errorText = "Error occured";
 const invalidCountMessage = "Invalid count of clues provided. Must be a number between 1 and 81";
 
 async function getSudokuGrid(url) {
-    return await fetch(url).then(function(res) {
+    return await fetch(url).then(function (res) {
         return res.json();
-    })
-};
+    });
+}
 
 async function getSimpleSudokuGrid() {
-    return await getSudokuGrid('/api');
-};
+    return await getSudokuGrid("/api");
+}
 
 async function getSudokuByDifficultyGrid(difficulty) {
-    return await getSudokuGrid('/api?difficulty=' + difficulty)
+    return await getSudokuGrid("/api?difficulty=" + difficulty);
 }
 
 async function getSudokuByCluesCountGrid(cluesCount) {
-    return await getSudokuGrid('/api?clues=' + cluesCount);
+    return await getSudokuGrid("/api?clues=" + cluesCount);
 }
 
 async function generateSimpleSudokuGrid(event) {
@@ -44,9 +44,9 @@ async function generateSimpleSudokuGrid(event) {
 }
 
 async function generateSudokuByDifficulty(event) {
-    event.target.disabled = true;    
+    event.target.disabled = true;
     const gridContainer = sudokuByDifficultyGrid;
-    const difficulty = document.getElementById('difficulty').value;
+    const difficulty = document.getElementById("difficulty").value;
 
     gridContainer.innerHTML = loadingText;
 
@@ -63,16 +63,16 @@ async function generateSudokuByDifficulty(event) {
 }
 
 async function generateSudokuByCluesCount(event) {
-    const gridContainer = sudokuByCluesCountGrid; 
-    const cluesCount = document.getElementById('clues').value;
-    
+    const gridContainer = sudokuByCluesCountGrid;
+    const cluesCount = document.getElementById("clues").value;
+
     if (cluesCount < 1 || cluesCount > 81) {
         gridContainer.innerHTML = invalidCountMessage;
         return;
     }
 
     gridContainer.innerHTML = loadingText;
-    event.target.disabled = true;   
+    event.target.disabled = true;
 
     const grid = await getSudokuByCluesCountGrid(cluesCount);
 
@@ -87,43 +87,44 @@ async function generateSudokuByCluesCount(event) {
 }
 
 function displayGrid(grid, container) {
-    const gridElement = document.createElement('table');
+    const gridElement = document.createElement("table");
 
     for (let i = 0; i < 9; i++) {
-        const row = document.createElement('tr');
-      
+        const row = document.createElement("tr");
+
         for (let l = 0; l < 9; l++) {
-            const col = document.createElement('td');
+            const col = document.createElement("td");
             col.dataset.row = l;
             col.dataset.col = i;
 
             if (grid[i][l] !== 0) {
                 col.innerHTML = grid[i][l];
             }
-            
+
             row.appendChild(col);
         }
-      
+
         gridElement.appendChild(row);
     }
-    
-    container.innerHTML = '';
+
+    container.innerHTML = "";
     container.appendChild(gridElement);
 }
 
-
 function addEventListeners() {
-    const simpleSudokuGeneratorButton = document.getElementById('simpleSudokuGeneratorButton');
-    const sudokuGeneratorByDifficultyButton = document.getElementById('sudokuGeneratorByDifficultyButton');
-    const sudokuGeneratorByCluesButton = document.getElementById('sudokuGeneratorByCluesButton');
+    const simpleSudokuGeneratorButton = document.getElementById("simpleSudokuGeneratorButton");
+    const sudokuGeneratorByDifficultyButton = document.getElementById(
+        "sudokuGeneratorByDifficultyButton"
+    );
+    const sudokuGeneratorByCluesButton = document.getElementById("sudokuGeneratorByCluesButton");
 
-    simpleSudokuGeneratorButton.addEventListener('click', generateSimpleSudokuGrid);
-    sudokuGeneratorByDifficultyButton.addEventListener('click', generateSudokuByDifficulty);
-    sudokuGeneratorByCluesButton.addEventListener('click', generateSudokuByCluesCount);
+    simpleSudokuGeneratorButton.addEventListener("click", generateSimpleSudokuGrid);
+    sudokuGeneratorByDifficultyButton.addEventListener("click", generateSudokuByDifficulty);
+    sudokuGeneratorByCluesButton.addEventListener("click", generateSudokuByCluesCount);
 }
 
 function init() {
     addEventListeners();
-};
+}
 
 init();

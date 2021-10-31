@@ -1,4 +1,4 @@
-const getSectionIndexes = (x,y) => {
+const getSectionIndexes = (x, y) => {
     let sectionX, sectionY;
 
     if (x < 3) {
@@ -6,7 +6,7 @@ const getSectionIndexes = (x,y) => {
     } else if (x < 6) {
         sectionX = 3;
     } else {
-        sectionX = 6
+        sectionX = 6;
     }
 
     if (y < 3) {
@@ -14,22 +14,22 @@ const getSectionIndexes = (x,y) => {
     } else if (y < 6) {
         sectionY = 3;
     } else {
-        sectionY = 6
-    };
+        sectionY = 6;
+    }
 
     return [sectionX, sectionY];
-}
+};
 
 // Returns boolean, which tells if number can be inserted into wanted squar
 const canNumberBeInserted = (grid, numberToCheck, x, y) => {
     // Check for occurence in section (one of 3x3 sections)
-    const [startingX, startingY] = getSectionIndexes(x,y);
+    const [startingX, startingY] = getSectionIndexes(x, y);
 
     for (let i = 0; i < 3; i++) {
         for (let l = 0; l < 3; l++) {
             const xIndexToCheck = startingX + l;
             const yIndexToCheck = startingY + i;
-            
+
             if (grid[yIndexToCheck][xIndexToCheck] === numberToCheck) {
                 return false;
             }
@@ -51,6 +51,6 @@ const canNumberBeInserted = (grid, numberToCheck, x, y) => {
     }
 
     return true;
-}
+};
 
 module.exports = canNumberBeInserted;

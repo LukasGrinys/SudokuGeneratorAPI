@@ -1,28 +1,29 @@
 :root {
-    --main-bg-color-light: #F6F6F1;
+    --main-bg-color-light: #f6f6f1;
     --main-bg-color-dark: #242424;
-    --color-vulcan-dark: #0F1420;
-    --color-mirage-blue: #201F3E;
+    --color-vulcan-dark: #0f1420;
+    --color-mirage-blue: #201f3e;
     --color-cello-blue: #224669;
-    --color-norway-blue: #9EB49E;
+    --color-norway-blue: #9eb49e;
     --color-light-grey: #e2e2e2;
-    
+
     --content-width: 800px;
 
     --sudoku-square: 32px;
     --sudoku-border-color: var(--color-vulcan-dark);
 }
 
-*, *::after, *::before {
+*,
+*::after,
+*::before {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
-    font-family: 'Inter', Arial, Helvetica, sans-serif;
+    font-family: "Inter", Arial, Helvetica, sans-serif;
 }
 
 body {
     background-color: var(--main-bg-color-light);
-    
 }
 
 code {
@@ -259,8 +260,8 @@ td:nth-child(6) {
     header .header-title,
     header .header-subtitle {
         color: var(--color-norway-blue);
-    } 
-    
+    }
+
     .key-details li {
         border: 2px solid var(--main-bg-color-light);
         box-shadow: none;
@@ -268,7 +269,7 @@ td:nth-child(6) {
 
     .key-details li svg {
         color: var(--color-norway-blue);
-    }    
+    }
 
     ::-webkit-scrollbar-track {
         background: var(--main-bg-color-dark);
