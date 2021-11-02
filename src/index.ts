@@ -1,7 +1,7 @@
 const path = require("path");
 const express = require("express");
 const app = express();
-const router = require("./src/router");
+const router = require("./router");
 const rateLimit = require("express-rate-limit");
 require("dotenv").config();
 

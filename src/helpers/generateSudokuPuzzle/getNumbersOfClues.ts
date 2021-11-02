@@ -1,4 +1,4 @@
-const getNumberOfClues = (difficulty) => {
+const getNumbersOfClues = (difficulty: string): number => {
     switch (difficulty) {
         case "evil":
             return Math.floor(Math.random() * 2) + 16;
@@ -13,4 +13,4 @@ const getNumberOfClues = (difficulty) => {
     }
 };
 
-module.exports = getNumberOfClues;
+module.exports = getNumbersOfClues;

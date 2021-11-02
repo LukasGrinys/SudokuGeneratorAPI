@@ -1,6 +1,7 @@
+import { TSudokuGrid } from "src/types/grid";
 const { clearDigit } = require("../solveSudokuPuzzle");
 
-const getCounterSquare = (square) => {
+const getCounterSquare = (square: string): string => {
     const [row, col] = square.split(",");
 
     const counterRow = 8 - Number(row);
@@ -9,7 +10,7 @@ const getCounterSquare = (square) => {
     return `${counterRow},${counterCol}`;
 };
 
-const shiftGrid = (grid) => {
+const shiftGrid = (grid: TSudokuGrid): void => {
     const xThirds = Math.floor(Math.random() * 3);
     const yThirds = Math.floor(Math.random() * 3);
 
@@ -20,19 +21,19 @@ const shiftGrid = (grid) => {
     // Shift rows
     for (let i = 0; i < yThirds * 3; i++) {
         const lastRow = grid.pop();
-        grid.unshift(lastRow);
+        grid.unshift(lastRow as number[]);
     }
 
     // Shift columns
     for (let i = 0; i < 9; i++) {
         for (let l = 0; l < xThirds * 3; l++) {
             const lastRowNumber = grid[i].pop();
-            grid[i].unshift(lastRowNumber);
+            grid[i].unshift(lastRowNumber as number);
         }
     }
 };
 
-const leaveCluesByDifficulty = (grid, cluesCount) => {
+const leaveCluesByCount = (grid: TSudokuGrid, cluesCount: number): TSudokuGrid => {
     if (cluesCount > 81) {
         throw new Error("Invalid clues count");
     }
@@ -83,4 +84,4 @@ const leaveCluesByDifficulty = (grid, cluesCount) => {
     return grid;
 };
 
-module.exports = leaveCluesByDifficulty;
+module.exports = leaveCluesByCount;

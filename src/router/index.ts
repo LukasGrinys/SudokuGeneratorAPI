@@ -1,12 +1,12 @@
-const express = require("express");
-const router = express.Router();
+import { Request, Response, Router } from "express";
 
+const router = Router();
 const { homepageController, sudokuGeneratorController } = require("../controllers");
 
 router.get("/", homepageController);
 router.get("/api", sudokuGeneratorController);
 
-router.get("/*", (req, res) => {
+router.get("/*", (req: Request, res: Response) => {
     res.status(301).redirect("/");
 });
 

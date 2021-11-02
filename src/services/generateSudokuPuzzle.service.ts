@@ -1,3 +1,5 @@
+import { TSudokuGrid } from "src/types/grid";
+
 const {
     generateEmptyGrid,
     leaveCluesByDifficulty,
@@ -5,7 +7,12 @@ const {
 } = require("../helpers/generateSudokuPuzzle");
 const solveSudokuPuzzle = require("./solveSudokuPuzzle.service");
 
-const generateSudokuPuzzle = ({ difficulty, clues }) => {
+interface IGenerateSudokuPuzzleParams {
+    difficulty?: string;
+    clues?: number;
+}
+
+const generateSudokuPuzzle = ({ difficulty, clues }: IGenerateSudokuPuzzleParams): TSudokuGrid => {
     // Generate empty grid
     const emptyGrid = generateEmptyGrid();
     // ...and solve it

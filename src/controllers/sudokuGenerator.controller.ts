@@ -1,10 +1,14 @@
+import { Request, Response } from "express";
 const generateSudokuPuzzle = require("../services/generateSudokuPuzzle.service");
 const { sudokuGeneratorValidator } = require("../validators");
 
-const sudokuGeneratorController = (req, res) => {
+const sudokuGeneratorController = (req: Request, res: Response) => {
     const params = req.query;
 
-    const clues = !isNaN(params.clues) ? parseInt(params.clues) : null;
+    const clues =
+        typeof params.clues === "string" && !isNaN(parseInt(params.clues))
+            ? parseInt(params.clues)
+            : null;
     const cluesValidation = sudokuGeneratorValidator.validateCluesCount(clues);
     if (!cluesValidation.isValid) {
         return res.status(400).send({
@@ -31,10 +35,10 @@ const sudokuGeneratorController = (req, res) => {
         res.status(200).json({
             puzzle,
         });
-    } catch (e) {
+    } catch (e: unknown) {
         res.status(500).json({
             error: true,
-            message: e.message,
+            message: e instanceof Error ? e.message : "Unknown error occured",
         });
     }
 };

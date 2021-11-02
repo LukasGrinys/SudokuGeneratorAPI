@@ -1,5 +1,7 @@
-const generateEmptyGrid = () => {
-    let grid = [];
+import { TSudokuGrid } from "src/types/grid";
+
+const generateEmptyGrid = (): TSudokuGrid => {
+    const grid: TSudokuGrid = [];
 
     for (let i = 0; i < 9; i++) {
         for (let l = 0; l < 9; l++) {

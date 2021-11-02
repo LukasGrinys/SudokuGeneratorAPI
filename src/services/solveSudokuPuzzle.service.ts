@@ -1,13 +1,17 @@
-const {
-    generateNumbersToCheck,
-    getEmptySquaresList,
-    getBacktraceMap,
-    insertDigit,
-    canNumberBeInserted,
-    clearDigit,
-} = require("../helpers/solveSudokuPuzzle");
+import { TSudokuGrid } from "src/types/grid";
 
-const solveSudokuPuzzle = (grid) => {
+const solveSudokuPuzzleHelpers = require("../helpers/solveSudokuPuzzle");
+
+const solveSudokuPuzzle = (grid: TSudokuGrid): TSudokuGrid => {
+    const {
+        generateNumbersToCheck,
+        getEmptySquaresList,
+        getBacktraceMap,
+        insertDigit,
+        canNumberBeInserted,
+        clearDigit,
+    } = solveSudokuPuzzleHelpers;
+
     const emptySquares = getEmptySquaresList(grid);
     const backtraceMap = getBacktraceMap(emptySquares);
     const pathLength = emptySquares.length;

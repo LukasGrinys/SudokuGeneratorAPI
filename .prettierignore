@@ -2,3 +2,5 @@ node_modules
 *.html
 package*.json
 README.md
+dist
+tsconfig.json

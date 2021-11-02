@@ -1,4 +1,6 @@
-const getSectionIndexes = (x, y) => {
+import { TSudokuGrid } from "src/types/grid";
+
+const getSectionIndexes = (x: number, y: number): [number, number] => {
     let sectionX, sectionY;
 
     if (x < 3) {
@@ -20,8 +22,12 @@ const getSectionIndexes = (x, y) => {
     return [sectionX, sectionY];
 };
 
-// Returns boolean, which tells if number can be inserted into wanted squar
-const canNumberBeInserted = (grid, numberToCheck, x, y) => {
+const canNumberBeInserted = (
+    grid: TSudokuGrid,
+    numberToCheck: number,
+    x: number,
+    y: number
+): boolean => {
     // Check for occurence in section (one of 3x3 sections)
     const [startingX, startingY] = getSectionIndexes(x, y);
 

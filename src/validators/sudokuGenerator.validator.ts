@@ -1,4 +1,6 @@
-const validateCluesCount = (cluesCount) => {
+import { TValueValidator } from "src/types/validator";
+
+const validateCluesCount: TValueValidator<number | null> = (cluesCount) => {
     if (cluesCount === null) {
         return {
             isValid: true,
@@ -24,7 +26,7 @@ const validateCluesCount = (cluesCount) => {
     };
 };
 
-const validateDifficulty = (difficulty) => {
+const validateDifficulty: TValueValidator<string | null> = (difficulty) => {
     if (difficulty === null) {
         return {
             isValid: true,

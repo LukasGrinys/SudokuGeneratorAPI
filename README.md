@@ -72,13 +72,17 @@ console.log(response);
 ```
 
 ## Starting a project
+Prerequisites:
+* `node 14.x`
+* `npm 6.x`
+
 After pulling the repository, run `npm install` to install the dependencies.
 
 Create `.env` file in root directory from `.env.sample` file and fill variables.
 * `PORT` variable defines the server port. If not specified, server will run on port 3000.
 
 Start the server
-* Start the node server with `npm run start`
-* Start the dev server with `npm run dev`
+* Start the development server with `npm run dev`. 
+* Start the production server: build the source code with `npm run build` and start the server with `npm run start`.
 
 Server will be running on `http://localhost:{PORT}`

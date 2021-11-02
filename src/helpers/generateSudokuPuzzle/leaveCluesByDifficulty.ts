@@ -1,7 +1,8 @@
+import { TSudokuGrid } from "src/types/grid";
 const getNumberOfClues = require("./getNumbersOfClues");
-const leaveCluesByCount = require("./leaveCluesByCount");
 
-const leaveCluesByDifficulty = (grid, difficulty) => {
+const leaveCluesByDifficulty = (grid: TSudokuGrid, difficulty: string): TSudokuGrid => {
+    const leaveCluesByCount = require("./leaveCluesByCount");
     const numberOfClues = getNumberOfClues(difficulty);
 
     return leaveCluesByCount(grid, numberOfClues);
