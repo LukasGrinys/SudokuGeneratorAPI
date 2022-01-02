@@ -3,6 +3,7 @@ const app = express();
 const router = require("./router");
 const rateLimit = require("express-rate-limit");
 require("dotenv").config();
+const cors = require('cors');
 
 const PORT = process.env.PORT || 3000;
 
@@ -13,6 +14,8 @@ const apiLimiter = rateLimit({
 });
 app.set("trust proxy", 1);
 app.use("/api", apiLimiter);
+
+app.use(cors());
 
 // Routes
 app.use(express.static("public"));
