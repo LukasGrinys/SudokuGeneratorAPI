@@ -21,8 +21,7 @@ const leaveSudokuPuzzleClues = ({
     difficulty,
     grid,
 }: TGenerateSudokuPuzzleHelperParams): TSudokuGrid => {
-    const cluesCount =
-        generationType === "clues" ? clues : difficulty ? getNumbersOfClues(difficulty) : null;
+    const cluesCount = generationType === "clues" ? clues : getNumbersOfClues(difficulty);
     if (!cluesCount || typeof cluesCount !== "number") {
         throw new Error("Could not calculate clues count");
     }

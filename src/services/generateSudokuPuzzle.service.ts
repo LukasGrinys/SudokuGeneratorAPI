@@ -21,7 +21,7 @@ const generateSudokuPuzzle = ({ difficulty, clues }: IGenerateSudokuPuzzleParams
     } catch (e) {
         throw new Error(`Could not generate sudoku grid: ${e}`);
     }
-
+    console.log({ clues });
     // Leave clues by removing digits
     const finalGrid = leaveSudokuPuzzleClues({
         difficulty,

@@ -1,4 +1,4 @@
-const getNumbersOfClues = (difficulty: string): number => {
+const getNumbersOfClues = (difficulty: string | undefined): number => {
     switch (difficulty) {
         case "evil":
             return Math.floor(Math.random() * 2) + 17;
