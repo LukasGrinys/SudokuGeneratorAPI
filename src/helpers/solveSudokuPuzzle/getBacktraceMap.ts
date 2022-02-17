@@ -1,6 +1,6 @@
 import { TBacktraceMap } from "src/types/backtraceMap";
 
-const getBacktraceMap = (emptySquaresList: string[]): TBacktraceMap => {
+export const getBacktraceMap = (emptySquaresList: string[]): TBacktraceMap => {
     const backtraceMap = {} as TBacktraceMap;
     const len = emptySquaresList.length;
 
@@ -10,5 +10,3 @@ const getBacktraceMap = (emptySquaresList: string[]): TBacktraceMap => {
 
     return backtraceMap;
 };
-
-module.exports = getBacktraceMap;

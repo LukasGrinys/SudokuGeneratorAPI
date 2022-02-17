@@ -3,7 +3,7 @@ const app = express();
 const router = require("./router");
 const rateLimit = require("express-rate-limit");
 require("dotenv").config();
-const cors = require('cors');
+const cors = require("cors");
 
 const PORT = process.env.PORT || 3000;
 
