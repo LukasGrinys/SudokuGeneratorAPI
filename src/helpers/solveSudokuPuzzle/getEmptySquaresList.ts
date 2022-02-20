@@ -1,6 +1,6 @@
 import { TSudokuGrid } from "src/types/grid";
 
-const getEmptySquaresList = (grid: TSudokuGrid): string[] => {
+export const getEmptySquaresList = (grid: TSudokuGrid): string[] => {
     // Grid squares are identified as 'x,y';
     // x - index of member in row
     // y - index of row
@@ -18,5 +18,3 @@ const getEmptySquaresList = (grid: TSudokuGrid): string[] => {
 
     return squaresToFill;
 };
-
-module.exports = getEmptySquaresList;

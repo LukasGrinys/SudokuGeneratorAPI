@@ -1,8 +1,6 @@
-module.exports = {
-    generateNumbersToCheck: require("./generateNumbersToCheck"),
-    getEmptySquaresList: require("./getEmptySquaresList"),
-    getBacktraceMap: require("./getBacktraceMap"),
-    clearDigit: require("./clearDigit"),
-    insertDigit: require("./insertDigit"),
-    canNumberBeInserted: require("./canNumberBeInserted"),
-};
+export * from "./generateNumbersToCheck";
+export * from "./getEmptySquaresList";
+export * from "./getBacktraceMap";
+export * from "./clearDigit";
+export * from "./insertDigit";
+export * from "./canNumberBeInserted";

@@ -16,4 +16,4 @@ const generateEmptyGrid = (): TSudokuGrid => {
     return grid;
 };
 
-module.exports = generateEmptyGrid;
+export default generateEmptyGrid;

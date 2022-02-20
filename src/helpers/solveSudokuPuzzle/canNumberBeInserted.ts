@@ -22,7 +22,7 @@ const getSectionIndexes = (x: number, y: number): [number, number] => {
     return [sectionX, sectionY];
 };
 
-const canNumberBeInserted = (
+export const canNumberBeInserted = (
     grid: TSudokuGrid,
     numberToCheck: number,
     x: number,
@@ -58,5 +58,3 @@ const canNumberBeInserted = (
 
     return true;
 };
-
-module.exports = canNumberBeInserted;

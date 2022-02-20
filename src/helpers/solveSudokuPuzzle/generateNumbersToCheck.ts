@@ -1,5 +1,5 @@
 // Returns 9 numbers in random order, which will be checked by solver
-const generateNumbersToCheck = (): number[] => {
+export const generateNumbersToCheck = (): number[] => {
     const numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9];
     const numbersRearranged = [];
 
@@ -12,5 +12,3 @@ const generateNumbersToCheck = (): number[] => {
 
     return numbersRearranged;
 };
-
-module.exports = generateNumbersToCheck;

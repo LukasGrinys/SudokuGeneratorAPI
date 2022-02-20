@@ -1,10 +1,8 @@
 import { TSudokuGrid } from "src/types/grid";
 
-const {
-    generateEmptyGrid,
-    leaveCluesByDifficulty,
-    leaveCluesByCount,
-} = require("../helpers/generateSudokuPuzzle");
+import leaveSudokuPuzzleClues from "../helpers/leaveSudokuPuzzleClues";
+import generateEmptyGrid from "../helpers/generateEmptyGrid";
+
 const solveSudokuPuzzle = require("./solveSudokuPuzzle.service");
 
 interface IGenerateSudokuPuzzleParams {
@@ -15,21 +13,22 @@ interface IGenerateSudokuPuzzleParams {
 const generateSudokuPuzzle = ({ difficulty, clues }: IGenerateSudokuPuzzleParams): TSudokuGrid => {
     // Generate empty grid
     const emptyGrid = generateEmptyGrid();
+
     // ...and solve it
-    let solvedGrid;
+    let solvedGrid: TSudokuGrid;
     try {
         solvedGrid = solveSudokuPuzzle(emptyGrid);
     } catch (e) {
         throw new Error(`Could not generate sudoku grid: ${e}`);
     }
-
-    // Leave clues, depending on difficulty/clue count provided
-    let finalGrid;
-    if (clues) {
-        finalGrid = leaveCluesByCount(solvedGrid, clues);
-    } else {
-        finalGrid = leaveCluesByDifficulty(solvedGrid, difficulty);
-    }
+    console.log({ clues });
+    // Leave clues by removing digits
+    const finalGrid = leaveSudokuPuzzleClues({
+        difficulty,
+        clues,
+        generationType: clues ? "clues" : "difficulty",
+        grid: solvedGrid,
+    });
 
     if (!finalGrid) {
         throw new Error("Could not leave clues on generated grid");
